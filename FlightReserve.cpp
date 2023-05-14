@@ -1,12 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
+/*
+Airline flight reservation system (online booking of tickets in different flights for different destinations all over the world, cancellation of tickets, clear display of cancellation amount, refund of amount after cancellation, showing  availability of all flights, showing flights timings for all 7 days of a week, seats availability, seat selection for travelers by giving the complete layout of the seating arrangement inside the flights, food availability/non-availability inside the flights, change of travel dates and amount charged.)
+*/
 
+//To store the total number of seats in the flight
 int total_number_of_seats=100;
-int seats[100] = {0};
+//To store if seat is booked or not, seat booked = -1, seat unbooked = 0
+int seats[100] = {0};	
 
 bool taken_seat = false;
 
+//To store the number of seats booked till now
 int reserve_seats = 1000;
+
+//To store the number of cancelled tickets booked till now
 int cancel_tickets = 0;
 
 class Flight{
@@ -22,6 +30,7 @@ class Flight{
 	   void get_booking_details();
 
 	private : 
+	   //To store details of passenger
 	   struct passenger
 	   {
 		string fname;
@@ -33,11 +42,13 @@ class Flight{
 		int reservation_number;
 		passenger *next;
 	   };
+	   //To denote the start of linked list of passengers
 	   passenger *start;
 
+	   //Temporary pointers
 	   passenger *temp_passenger;
 	   passenger *temp1;
-}flight;
+}flight;	//flight is object of class Flight
 
 void allocate_seat_number(int snumber)
 {
@@ -67,6 +78,7 @@ void allocate_seat_number(int snumber)
 
 void Flight :: book_ticket()
 {
+	//To store the details of passenger
 	temp_passenger = new passenger;
 	cout << "Enter your first name: ";
 	cin >> temp_passenger->fname;
@@ -133,6 +145,7 @@ void Flight :: book_ticket()
 	temp_passenger->next = NULL;
 
 
+	//If the linked list is empty
 	if(start == NULL)
 	{
 		start = temp_passenger;
